@@ -1,0 +1,11 @@
+<div class="post_container">
+  <% @posts.each do |p|%>
+    <div class= "post_summary">
+      <h2 class="title_sum"><%= p.title %></h2>
+      <% if :author_signed_in? %>
+        <div class="author">p.author</div>
+      <% end %>
+      <p class="content_sum"><%= p.content%></p>
+    </div>
+  <% end %>
+</div>

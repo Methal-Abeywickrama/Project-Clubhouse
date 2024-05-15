@@ -1,6 +1,17 @@
 class PostsController < ApplicationController
 
   before_action :authenticate_author!, only: [:new , :create]
+
+  # GET /posts
+  def index
+    @posts = Post.all
+  end
+
+  # GET /posts/:id
+  def show
+    @post = Post.find(params[:id])
+  end
+
   def new
     @post = Post.new
   end
