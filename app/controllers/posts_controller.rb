@@ -1,10 +1,12 @@
 class PostsController < ApplicationController
+
+  before_action :authenticate_author!, only: [:new , :create]
   def new
     @post = Post.new
   end
 
   def create 
-    @post = Post.new(post_params)
+    @post = current_author.posts.build(post_params)
 
     if @post.save
       redirect_to @post, notice: "Post was created successfully"
@@ -16,6 +18,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :content, :author_id) # Adjust permitted attributes as needed
+    params.require(:post).permit(:title, :content) # Adjust permitted attributes as needed
   end
 end
